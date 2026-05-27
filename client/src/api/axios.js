@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://user-authentication-ffktt4ez4-pintocselu-7768s-projects.vercel.app/api/auth/", // your backend URL
+  baseURL: "http://localhost:3000/api/auth/", // your backend URL
 });
 
 // Attach JWT token to every request automatically

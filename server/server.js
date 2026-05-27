@@ -11,19 +11,13 @@ const app = express();
 
 
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowed = process.env.CLIENT_URLS?.split(",").map(url => url.trim()) || [];
-    console.log("Allowed origins:", allowed);
-    console.log("Request origin:", origin);
-    if (!origin || allowed.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
+  origin: [
+    'http://localhost:5173',
+    'https://user-authentication-client-mu.vercel.app/', // ✅ replace with your actual frontend URL
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type','Authorization']
 }));
-
 app.use(express.json());
 // Replace your current cors config with this temporarily
 
