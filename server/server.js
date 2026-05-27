@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://user-authentication-client-mu.vercel.app/', // ✅ replace with your actual frontend URL
+    'https://user-authentication-client-mu.vercel.app', // ✅ replace with your actual frontend URL
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type','Authorization']
