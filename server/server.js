@@ -11,9 +11,17 @@ const app = express();
 
 
 app.use(cors({
-  origin: '*',  // or your frontend URL e.g. 'http://localhost:3000'
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  origin: (origin, callback) => {
+    const allowed = process.env.CLIENT_URLS?.split(",").map(url => url.trim()) || [];
+    console.log("Allowed origins:", allowed);
+    console.log("Request origin:", origin);
+    if (!origin || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 }));
 
 app.use(express.json());
